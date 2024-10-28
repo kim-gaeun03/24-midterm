@@ -53,6 +53,8 @@ public class MidtermCalculator extends JFrame implements ActionListener {
 /*
      * @GPT 도움받아 계산기능 추가.
      */
+
+     
 //버튼 클릭했을때 동작 정의
     @Override
     public void actionPerformed(ActionEvent e) {

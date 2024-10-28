@@ -24,14 +24,15 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     	
     	//패널설정(그리드 레이아웃 사용)
     	JPanel panel = new JPanel();
-    	panel.setLayout(new GridLayout(4,4));
+    	panel.setLayout(new GridLayout(5,4)); // 4*4에서 5*4로 변경
     	
     	// 버튼 위치
     	String[] buttons = {
-    			"7", "8", "9", "/",
-    			"4", "5", "6", "*",
-    			"1", "2", "3", "-",
-    			"0", "=", "+", "C"
+    		"AC", "", "", "/",
+                "7", "8", "9", "*",
+                "4", "5", "6", "-",
+                "1", "2", "3", "+",
+                "0", "", ".", "="
     	};
     	
     	for (String text : buttons) {
@@ -52,6 +53,7 @@ public class MidtermCalculator extends JFrame implements ActionListener {
 
 /*
      * @GPT 도움받아 계산기능 추가.
+     * @ 빈칸 무시 기능 생성.
      */
 
      
@@ -59,7 +61,9 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     	String command = e.getActionCommand();
-    	
+
+	if (command.equals("")) return; //빈칸 무시기능 생성
+     	
     	//숫자 버튼 클릭
     	if("0123456789".contains(command)) {
     		display.setText(display.getText() + command);

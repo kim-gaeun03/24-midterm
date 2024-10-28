@@ -1,5 +1,9 @@
 # 24-midterm
-
+/*
+ * @2024-10-28 생성
+ * @계산기 프레임 제작
+ * @
+ */
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,3 +49,45 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //창 닫기
     	setVisible(true); //창 보이게 설정
     }
+
+/*
+     * @GPT 도움받아 계산기능 추가.
+     */
+//버튼 클릭했을때 동작 정의
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    	String command = e.getActionCommand();
+    	
+    	//숫자 버튼 클릭
+    	if("0123456789".contains(command)) {
+    		display.setText(display.getText() + command);
+    	}
+    	//c 버튼 화면 초기화 기능
+    	else if (command.equals("C")) {
+    		display.setText("");
+    		num1 = num2 = 0;
+    		operator = "";
+    	}
+    	// = 버튼 계산
+    	else if (command.equals("=")) {
+    		num2 = Double.parseDouble(display.getText());
+    		switch (operator) {
+    		case "+":display.setText(String.valueOf(num1 + num2)); break;
+    		case "-":display.setText(String.valueOf(num1 - num2)); break;
+    		case "*":display.setText(String.valueOf(num1 * num2)); break;
+    		case "/":display.setText(String.valueOf(num1 / num2)); break;
+    		}
+    	}
+    	// 연산자 버튼 
+    	else {
+    		operator = command; //현재 연산자 저장
+    		num1 = Double.parseDouble(display.getText()); //첫번째 숫자 저장
+    		display.setText(""); //화면 초기화 하고 두번째 숫자 입력
+    	}
+    }
+	public static void main(String[] args) {
+		new MidtermCalculator();
+	}
+
+}
+     

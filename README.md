@@ -12,6 +12,7 @@
  * @텍스트필드에 나오는 폰트 사이즈를키움
  * @기본 텍스트필드 자리에 0이 써있게 변경함
  * @숫자를 입력할 때 0이 지워지고 입력되게 변경.
+ * @이제 정수로 떨어지는 계산에는 .0이 표시되지 않게함.
  */
 
 import javax.swing.*;
@@ -149,15 +150,22 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     		num1 = num2 = 0;
     		operator = "";
     	}
-    	// = 버튼 계산
-    	else if (command.equals("=")) {
-    		num2 = Double.parseDouble(display.getText());
-    		switch (operator) {
-    		case "+":display.setText(String.valueOf(num1 + num2)); break;
-    		case "-":display.setText(String.valueOf(num1 - num2)); break;
-    		case "*":display.setText(String.valueOf(num1 * num2)); break;
-    		case "/":display.setText(String.valueOf(num1 / num2)); break;
-    		}
+    	 // '=' 버튼 클릭 시 계산 수행
+     else if (command.equals("=")) {
+    	    num2 = Double.parseDouble(display.getText()); // 두 번째 숫자 가져오기
+    	    double result = 0;
+    	    switch (operator) {                           // 연산자에 따라 계산
+    	        case "+": result = num1 + num2; break;
+    	        case "-": result = num1 - num2; break;
+    	        case "*": result = num1 * num2; break;
+    	        case "/": result = num1 / num2; break;
+    	    }
+    	    // 결과를 정수와 소수로 구분하여 표시
+    	    if (result % 1 == 0) { 
+    	        display.setText(String.valueOf((int) result)); // 정수인 경우 .0을 제거하고 정수로 출력
+    	    } else {
+    	        display.setText(String.valueOf(result)); // 소수인 경우 그대로 출력
+    	    }
     	}
     	// 연산자 버튼 
     	else {

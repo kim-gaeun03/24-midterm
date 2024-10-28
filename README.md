@@ -8,8 +8,9 @@
  * @버튼의 색깔변경.
  * @색깔 변경 코드를 짧게 변경 (첫번째줄 밝은회색/ 오른쪽 세로줄 주황/ 나머지 어두운회색)
  * @AC 옆 빈버튼 +/-와 %로 변경 기능은 구현하지 못했음.
- * 텍스트필드 사이즈를 키움
- * 텍스트필드에 나오는 폰트 사이즈를키움
+ * @텍스트필드 사이즈를 키움
+ * @텍스트필드에 나오는 폰트 사이즈를키움
+ * @기본 텍스트필드 자리에 0이 써있게 변경함
  */
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class MidtermCalculator extends JFrame implements ActionListener {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBackground(Color.BLACK);  // 메인 패널 배경색 검정
 	
-    	display = new JTextField(); //텍스트필드 칸에 결과, 숫자 보여주기
+    	display = new JTextField("0"); //텍스트필드 칸에 결과, 숫자 보여주기
     	display.setEditable(false); //직접 입력 못하게 설정
     	display.setHorizontalAlignment(JTextField.RIGHT); //오른쪽 정렬 
     	display.setBackground(Color.BLACK);               // 텍스트 필드 배경색 검정

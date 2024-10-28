@@ -11,6 +11,7 @@
  * @텍스트필드 사이즈를 키움
  * @텍스트필드에 나오는 폰트 사이즈를키움
  * @기본 텍스트필드 자리에 0이 써있게 변경함
+ * @숫자를 입력할 때 0이 지워지고 입력되게 변경.
  */
 
 import javax.swing.*;
@@ -135,8 +136,13 @@ public class MidtermCalculator extends JFrame implements ActionListener {
      	
     	//숫자 버튼 클릭
     	if("0123456789".contains(command)) {
-    		display.setText(display.getText() + command);
-    	}
+    		// 기본값 0을 지우고 숫자 추가
+            if (display.getText().equals("0")) {
+                display.setText(command); // 기본값이 0일 때 숫자 입력
+            } else {
+                display.setText(display.getText() + command); // 텍스트 필드에 숫자 추가
+            }
+        }
     	//c 버튼 화면 초기화 기능
     	else if (command.equals("C")) {
     		display.setText("");

@@ -37,6 +37,9 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     	display.setBackground(Color.BLACK);               // 텍스트 필드 배경색 검정
         display.setForeground(Color.WHITE);               // 텍스트 필드 텍스트색 흰색
 	display.setPreferredSize(new Dimension(400, 100)); // 텍스트 필드 크기 조정
+
+ 	// 텍스트 필드 폰트 크기 설정
+     	display.setFont(new Font("Arial", Font.PLAIN, 36)); // 폰트 크기를 36으로 설정
     	
     	//패널설정(그리드 레이아웃 사용)
     	JPanel panel = new JPanel();

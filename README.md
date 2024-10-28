@@ -3,7 +3,9 @@
  * @2024-10-28 생성
  * @계산기 프레임 제작
  * @배열 변경 : 4x4에서 5x4로 변경 빈칸과 . 버튼 추가로 인해 빈칸 무시하는 코드 생성.
- */@배경색을 검정으로 변경하고 텍스트필드의 글씨를 흰색으로 변경., 메인패널 생성
+ * @배경색을 검정으로 변경하고 텍스트필드의 글씨를 흰색으로 변경., 메인패널 생성
+ * @버튼의 모양을 동그랗게 변경.
+ */
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +49,31 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     	for (String text : buttons) {
     		JButton button = new JButton(text); //버튼 생성
     		button.addActionListener(this); //클릭
-    		panel.add(button); //패널에 버튼 추가
+
+       // ➜ **버튼 모양을 동그랗게 설정**
+            button.setFocusPainted(false);       // 버튼에 포커스 표시 제거
+            button.setBorder(BorderFactory.createEmptyBorder()); // 기본 테두리 제거
+            button.setContentAreaFilled(false);   // 버튼의 배경색 채우기 제거
+
+            // ➜ **동그란 버튼 만들기: 버튼의 모양을 원으로 설정**
+            button.setPreferredSize(new Dimension(60, 60)); // 버튼 크기 설정
+            button.setBackground(Color.DARK_GRAY); // 버튼 배경색 설정
+            button.setForeground(Color.WHITE);      // 버튼 텍스트 색상 설정
+            
+            // ➜ **버튼에 마우스 오버 효과 추가**
+            button.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    button.setBackground(Color.GRAY); // 마우스 오버 시 색상 변경
+                }
+
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    button.setBackground(Color.DARK_GRAY); // 기본 색상으로 복원
+                }
+            });
+       
+      	panel.add(button); //패널에 버튼 추가
     	}
     	
     	//레이아웃 설정: 텍스트필드 위,버튼 아래 -> mainPanel로 변경

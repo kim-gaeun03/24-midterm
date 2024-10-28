@@ -5,6 +5,7 @@
  * @배열 변경 : 4x4에서 5x4로 변경 빈칸과 . 버튼 추가로 인해 빈칸 무시하는 코드 생성.
  * @배경색을 검정으로 변경하고 텍스트필드의 글씨를 흰색으로 변경., 메인패널 생성
  * @버튼의 모양을 동그랗게 변경.
+ * @버튼의 색깔변경.
  */
 
 import javax.swing.*;
@@ -54,10 +55,22 @@ public class MidtermCalculator extends JFrame implements ActionListener {
             button.setFocusPainted(false);       // 버튼에 포커스 표시 제거
             button.setBorder(BorderFactory.createEmptyBorder()); // 기본 테두리 제거
             button.setContentAreaFilled(false);   // 버튼의 배경색 채우기 제거
+	    button.setOpaque(true);                // 버튼의 불투명성 설정
 
             // ➜ **동그란 버튼 만들기: 버튼의 모양을 원으로 설정**
             button.setPreferredSize(new Dimension(60, 60)); // 버튼 크기 설정
             button.setBackground(Color.DARK_GRAY); // 버튼 배경색 설정
+            button.setForeground(Color.WHITE);      // 버튼 텍스트 색상 설정
+
+     	// ➜ **버튼 색상 설정**
+            if (text.equals("AC") || text.equals("") || text.equals(" ")) {
+                button.setBackground(Color.LIGHT_GRAY); // AC와 빈 버튼은 밝은 회색
+            } else if (text.equals("/") || text.equals("*") || text.equals("-") || text.equals("+") || text.equals("=")) {
+                button.setBackground(Color.ORANGE); // 연산자는 주황색
+            } else {
+                button.setBackground(Color.DARK_GRAY); // 나머지 숫자는 어두운 회색
+            }
+
             button.setForeground(Color.WHITE);      // 버튼 텍스트 색상 설정
             
             // ➜ **버튼에 마우스 오버 효과 추가**
@@ -69,7 +82,14 @@ public class MidtermCalculator extends JFrame implements ActionListener {
 
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent evt) {
-                    button.setBackground(Color.DARK_GRAY); // 기본 색상으로 복원
+                    // ➜ **여기에서 원래 색상으로 복원**
+                    if (text.equals("AC") || text.equals("")) {
+                        button.setBackground(Color.LIGHT_GRAY); // 원래 밝은 회색으로 복원
+                    } else if (text.equals("/") || text.equals("*") || text.equals("-") || text.equals("+") || text.equals("=")) {
+                        button.setBackground(Color.ORANGE); // 원래 주황색으로 복원
+                    } else {
+                        button.setBackground(Color.DARK_GRAY); // 원래 어두운 회색으로 복원
+                    }
                 }
             });
        

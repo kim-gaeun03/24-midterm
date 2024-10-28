@@ -4,10 +4,12 @@
  * @계산기 프레임 제작
  * @배열 변경 : 4x4에서 5x4로 변경 빈칸과 . 버튼 추가로 인해 빈칸 무시하는 코드 생성.
  * @배경색을 검정으로 변경하고 텍스트필드의 글씨를 흰색으로 변경., 메인패널 생성
- * @버튼의 모양을 동그랗게 변경.
+ * @버튼의 모양을 동그랗게 변경. ->취소
  * @버튼의 색깔변경.
  * @색깔 변경 코드를 짧게 변경 (첫번째줄 밝은회색/ 오른쪽 세로줄 주황/ 나머지 어두운회색)
- * @0옆 빈칸이 밝은회색으로 설정된것을 수정.
+ * @AC 옆 빈버튼 +/-와 %로 변경 기능은 구현하지 못했음.
+ * 텍스트필드 사이즈를 키움
+ * 텍스트필드에 나오는 폰트 사이즈를키움.
  */
 
 import javax.swing.*;
@@ -17,7 +19,7 @@ import java.awt.event.*;
 //JFrame을받아 GUI창 생성
 public class MidtermCalculator extends JFrame implements ActionListener {
 	
-	private JTextField display;//텍스트필드 칸 생성
+    private JTextField display;//텍스트필드 칸 생성
     private String operator; //연산자
     private double num1, num2; //1번숫자 2번숫자
     
@@ -34,6 +36,7 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     	display.setHorizontalAlignment(JTextField.RIGHT); //오른쪽 정렬 
     	display.setBackground(Color.BLACK);               // 텍스트 필드 배경색 검정
         display.setForeground(Color.WHITE);               // 텍스트 필드 텍스트색 흰색
+	display.setPreferredSize(new Dimension(400, 100)); // 텍스트 필드 크기 조정
     	
     	//패널설정(그리드 레이아웃 사용)
     	JPanel panel = new JPanel();
@@ -42,7 +45,7 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     	
     	// 버튼 위치
     	String[] buttons = {
-    		"AC", "", "", "/",
+    		"AC", "+/-", "%", "/",
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
@@ -84,19 +87,20 @@ public class MidtermCalculator extends JFrame implements ActionListener {
 
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent evt) {
-                    // ➜ **여기에서 원래 색상으로 복원**
-                    if (text.equals("AC") || text.equals("")) {
-                        button.setBackground(Color.LIGHT_GRAY); // 원래 밝은 회색으로 복원
-                    } else if (text.equals("/") || text.equals("*") || text.equals("-") || text.equals("+") || text.equals("=")) {
-                        button.setBackground(Color.ORANGE); // 원래 주황색으로 복원
-                    } else {
-                        button.setBackground(Color.DARK_GRAY); // 원래 어두운 회색으로 복원
-                    }
-                }
-            });
-       
-      	panel.add(button); //패널에 버튼 추가
-    	}
+                 // 원래 색상으로 복원
+                 if (text.equals("AC") || text.equals("+/-") || text.equals("%")) {
+                     button.setBackground(Color.LIGHT_GRAY); // 밝은 회색으로 복원
+                 } else if (text.equals("/") || text.equals("*") || text.equals("-") || text.equals("+") || text.equals("=")) {
+                     button.setBackground(Color.ORANGE); // 주황색으로 복원
+                 } else {
+                     button.setBackground(Color.DARK_GRAY); // 어두운 회색으로 복원
+                 }
+             }
+         });
+
+         button.setPreferredSize(new Dimension(60, 60)); // 버튼 크기 설정
+         panel.add(button);                    // 패널에 버튼 추가
+     }
     	
     	//레이아웃 설정: 텍스트필드 위,버튼 아래 -> mainPanel로 변경
     	mainPanel.add(display, BorderLayout.NORTH);
@@ -114,6 +118,7 @@ public class MidtermCalculator extends JFrame implements ActionListener {
 /*
      * @GPT 도움받아 계산기능 추가.
      * @ 빈칸 무시 기능 생성.
+     * @ UI 꾸미기 도움받음.
      */
 
      

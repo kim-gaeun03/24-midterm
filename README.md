@@ -13,6 +13,7 @@
  * @기본 텍스트필드 자리에 0이 써있게 변경함
  * @숫자를 입력할 때 0이 지워지고 입력되게 변경.
  * @정수로 떨어지는 계산에는 .0이 표시되지 않게함.
+ * @폰트 크기 더 키움.
  */
 
 import javax.swing.*;
@@ -42,7 +43,7 @@ public class MidtermCalculator extends JFrame implements ActionListener {
 	display.setPreferredSize(new Dimension(400, 100)); // 텍스트 필드 크기 조정
 
  	// 텍스트 필드 폰트 크기 설정
-     	display.setFont(new Font("Arial", Font.PLAIN, 36)); // 폰트 크기를 36으로 설정
+     	display.setFont(new Font("Arial", Font.PLAIN, 60)); // 폰트 크기 설정
     	
     	//패널설정(그리드 레이아웃 사용)
     	JPanel panel = new JPanel();

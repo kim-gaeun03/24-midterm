@@ -3,7 +3,7 @@
  * @2024-10-28 생성
  * @계산기 프레임 제작
  * @배열 변경 : 4x4에서 5x4로 변경 빈칸과 . 버튼 추가로 인해 빈칸 무시하는 코드 생성.
- */
+ */@배경색을 검정으로 변경하고 텍스트필드의 글씨를 흰색으로 변경., 메인패널 생성
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +18,22 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     
     //GUI 구성요소설청, 창설정.
     public MidtermCalculator() {
+
+    	// 전체 배경을 담을 메인 패널 생성
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.setBackground(Color.BLACK);  // 메인 패널 배경색 검정
+	
     	display = new JTextField(); //텍스트필드 칸에 결과, 숫자 보여주기
     	display.setEditable(false); //직접 입력 못하게 설정
     	display.setHorizontalAlignment(JTextField.RIGHT); //오른쪽 정렬 
+    	display.setBackground(Color.BLACK);               // 텍스트 필드 배경색 검정
+        display.setForeground(Color.WHITE);               // 텍스트 필드 텍스트색 흰색
     	
     	//패널설정(그리드 레이아웃 사용)
     	JPanel panel = new JPanel();
     	panel.setLayout(new GridLayout(5,4)); // 4*4에서 5*4로 변경
+     	panel.setBackground(Color.BLACK);  // 버튼 패널 배경색 검정
     	
     	// 버튼 위치
     	String[] buttons = {
@@ -41,9 +50,12 @@ public class MidtermCalculator extends JFrame implements ActionListener {
     		panel.add(button); //패널에 버튼 추가
     	}
     	
-    	//레이아웃 설정: 텍스트필드 위,버튼 아래
-    	add(display, BorderLayout.NORTH);
-    	add(panel, BorderLayout.CENTER);
+    	//레이아웃 설정: 텍스트필드 위,버튼 아래 -> mainPanel로 변경
+    	mainPanel.add(display, BorderLayout.NORTH);
+    	mainPanel.add(panel, BorderLayout.CENTER);
+    	
+    	// ➜ **메인 패널을 JFrame에 추가**
+        setContentPane(mainPanel);
     	
     	setTitle("계산기"); //제목
     	setSize(300,400); //크기
